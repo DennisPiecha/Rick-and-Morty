@@ -1,48 +1,42 @@
-const div = document.querySelector(".character-list");
+//const randNum = Math.floor(Math.random() * 42) + 1;
+const charDiv = document.querySelector(".charDiv");
+const button = document.querySelector("#newChar");
 
-const random = Math.floor(Math.random() * 42) + 1;
+const apiCharacterURl = `https://rickandmortyapi.com/api/character`;
 
-const url = `https://rickandmortyapi.com/api/character/?page=${random}`;
+async function rickMortyCharacters() {
+  const randNum = Math.floor(Math.random() * 826);
+  const response = await fetch(`${apiCharacterURl}/${randNum}`);
+  const data = await response.json();
+  randomCharacters(data);
+}
 
-const putCards = (data) => {
-  console.log(data);
-  data.results.forEach((character) => {
-    const el = document.createElement("div");
-    el.className = "card";
+function randomCharacters(data) {
+  //const imageRandom = Math.floor(Math.random() * data.results.length); // zufällige auswahl der char. auf der api seite
+  const character = data; //[imageRandom]; // der zufällig gewählte character
+  console.log(character, data); // nur uim zu sehen was wir für ein Objekt bekommen
+  const img = document.createElement("img"); // erstellen des Img-tags
+  const name = document.createElement("p"); // erstellen  des p-tags für den namen
+  const species = document.createElement("p"); // erstellen  des p-tags für den spezies
+  const episode = document.createElement("a"); // erstellen  des p-tags für den episoden-link
+  const episodeToArr = character.episode[0].split("/");
+  console.log(episodeToArr);
+  const episodeNum = episodeToArr[episodeToArr.length - 1];
+  console.log(episodeNum);
 
-    const imageEl = document.createElement("div");
-    imageEl.className = "imageClass";
+  img.src = character.image; // einfügen des image links um auf html seite angezeigt zu werden
+  name.textContent = `Character: ${character.name}`; // einfügen des texts um auf html seite angezeigt zu werden
+  species.textContent = `Species: ${character.species}`; // einfügen des texts um auf html seite angezeigt zu werden
+  episode.textContent = `Episode: ${episodeNum}`; // einfügen des texts um auf html seite angezeigt zu werden
+  episode.href = character.episode[0]; // href mit link zum episoden guide
+  charDiv.innerHTML = ""; // hier wird das div wieder geleert / damit vermeiden wir das immer neue divs erzeugt werde    // mit appendChild werden die elemente im html eingefügt
+  charDiv.appendChild(img);
+  charDiv.appendChild(name);
+  charDiv.appendChild(species);
+  charDiv.appendChild(episode);
+}
 
-    const wordsEl = document.createElement("div");
-    wordsEl.className = "cardWords";
+button.addEventListener("click", rickMortyCharacters);
+rickMortyCharacters();
 
-    const myImage = document.createElement("img");
-    myImage.src = character.image;
-    imageEl.append(myImage);
-
-    const currentName = document.createElement("h2");
-    currentName.textContent = `Name: ${character.name}`;
-    wordsEl.append(currentName);
-
-    const myStatus = document.createElement("h3");
-    myStatus.textContent = `Status: ${character.status}`;
-    wordsEl.append(myStatus);
-
-    const myLocation = document.createElement("h3");
-    myLocation.textContent = `Location: ${character.location.name}`;
-    wordsEl.append(myLocation);
-
-    const myGender = document.createElement("h3");
-    myGender.textContent = `Gender: ${character.gender}`;
-    wordsEl.append(myGender);
-
-    el.append(imageEl, wordsEl);
-
-    div.append(el);
-  });
-};
-
-fetch(url)
-  .then((response) => response.json())
-  .then(putCards)
-  .catch((error) => console.log("THIS IS AN ERROR"));
+// have fun
