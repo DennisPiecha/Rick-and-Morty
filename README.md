@@ -1,6 +1,6 @@
 # rick-and-morty-fetch-project
 
-**[Test this app yourself](https://dennis.piecha.github.io/Rick-and-Morty/)**
+**[Test this app yourself](https://dennispiecha.github.io/Rick-and-Morty/)**
 
 ---
 
