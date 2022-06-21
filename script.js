@@ -2,11 +2,11 @@
 const charDiv = document.querySelector(".charDiv");
 const button = document.querySelector("#newChar");
 
-const apiCharacterURl = `https://rickandmortyapi.com/api/character`;
+const apiCharacterUrl = `https://rickandmortyapi.com/api/character`;
 
 async function rickMortyCharacters() {
-  const randNum = Math.floor(Math.random() * 826);
-  const response = await fetch(`${apiCharacterURl}/${randNum}`);
+  const randNum = Math.floor(Math.random() * 826); // apiCharacterUrl.length ??? geht irwi nich...
+  const response = await fetch(`${apiCharacterUrl}/${randNum}`);
   const data = await response.json();
   randomCharacters(data);
 }
