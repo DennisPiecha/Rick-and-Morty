@@ -1,6 +1,6 @@
-# rick-and-morty-fetch
+# rick-and-morty-fetch-project
 
-**[Test this app yourself](https://holledrums.github.io/randomRickAndMorty/)**
+**[Test this app yourself](https://dennis.piecha.github.io/Rick-and-Morty/)**
 
 ---
 
@@ -50,9 +50,8 @@ Ein Programm, das mit der [Rick-and-Morty-API](https://rickandmortyapi.com/docum
 
 ### Contact
 
-Mail: <holgeraliusklose@gmail.com><br>
-GitHub: [Holledrums](https://github.com/holledrums)<br>
-LinkedIn: [Holger Klose](https://www.linkedin.com/in/holger-klose-240831147/)
+Mail: dennis.piecha25@gmail.com
+GitHub: DennisPiecha
 
 ---
 
